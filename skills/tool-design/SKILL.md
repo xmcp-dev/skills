@@ -57,7 +57,7 @@ Every xmcp tool has three main exports:
 // 1. Schema (optional) - Define parameters with Zod
 export const schema = { /* ... */ };
 
-// 2. Metadata (required) - Tool configuration
+// 2. Metadata (optional) - Tool configuration
 export const metadata: ToolMetadata = { /* ... */ };
 
 // 3. Handler (required) - Default export function
@@ -109,7 +109,7 @@ For complete code templates including:
 
 1. File created in `src/tools/{tool-name}.ts` (or `.tsx`)
 2. Schema uses `.describe()` for all parameters
-3. Metadata has descriptive `name` and `description`
+3. If using metadata, ensure it has descriptive `name` and `description`
 4. Appropriate annotations set based on tool behavior
 5. Handler matches the chosen type
 6. All imports are correct

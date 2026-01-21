@@ -35,6 +35,24 @@ export default function handler() {
 }
 ```
 
+### Minimal Resource (No Metadata)
+
+Best for: Quick prototyping, simple resources
+
+**File: `src/resources/(config)/settings.ts`**
+**URI: `config://settings`**
+
+```typescript
+// Metadata is optional - resource name defaults to filename
+export default function handler() {
+  return JSON.stringify({ theme: "dark", language: "en" });
+}
+```
+
+**Note:** When metadata is omitted, xmcp uses the filename as the resource name.
+
+---
+
 ### Template B: Static Text Resource
 
 Best for: Documentation, README content, static text
@@ -250,44 +268,6 @@ export default async function handler({
 }: InferSchema<typeof schema>) {
   const data = await fetchResourceDetails(service, resource, id);
   return JSON.stringify(data, null, 2);
-}
-```
-
----
-
-## OpenAI Metadata Examples
-
-### Template H: Resource with OpenAI Widget Support
-
-Best for: Resources that render as widgets in OpenAI clients
-
-```typescript
-import { type ResourceMetadata } from "xmcp";
-
-export const metadata: ResourceMetadata = {
-  name: "dashboard-widget",
-  title: "Dashboard Widget",
-  description: "Interactive dashboard visualization",
-  mimeType: "text/html",
-  _meta: {
-    openai: {
-      widgetAccessible: true,
-      toolInvocation: {
-        invoking: "Loading dashboard...",
-        invoked: "Dashboard ready!",
-      },
-    },
-  },
-};
-
-export default function handler() {
-  return `
-    <div id="dashboard-root" style="width: 100%; height: 400px;">
-      <h2>Dashboard</h2>
-      <div id="chart-container"></div>
-    </div>
-    <script type="module" src="https://cdn.example.com/dashboard.js"></script>
-  `.trim();
 }
 ```
 

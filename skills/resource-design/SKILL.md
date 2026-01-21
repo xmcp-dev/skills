@@ -57,7 +57,7 @@ src/resources/
 Every xmcp resource has two main exports:
 
 ```typescript
-// 1. Metadata (required) - Resource configuration
+// 1. Metadata (optional) - Resource configuration
 export const metadata: ResourceMetadata = { /* ... */ };
 
 // 2. Handler (required) - Default export function
@@ -82,12 +82,14 @@ import { type InferSchema, type ResourceMetadata } from "xmcp";
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `name` | string | Yes | Unique resource identifier |
+| `name` | string | No* | Unique resource identifier |
 | `title` | string | No | Human-readable title |
 | `description` | string | No | What this resource provides |
 | `mimeType` | string | No | Content type (default: text/plain) |
 | `size` | number | No | Content size in bytes |
 | `_meta` | object | No | Vendor extensions (OpenAI, etc.) |
+
+*When metadata is omitted, xmcp uses the filename as the resource name.
 
 ### Handler Return Types
 
@@ -114,7 +116,7 @@ For complete code templates including:
 ## Checklist After Generation
 
 1. File created in correct `src/resources/` location
-2. Metadata has descriptive `name` and `description`
+2. If using metadata, ensure it has descriptive `name` and `description`
 3. Schema uses `.describe()` for all parameters (if dynamic)
 4. Handler returns appropriate content type
 5. File path matches intended URI pattern

@@ -55,22 +55,7 @@ export default function Widget({ query }) {
 }
 ```
 
-### 3. Dark Theme First
-
-Most chat interfaces use dark themes. Design accordingly:
-
-```tsx
-// Color palette for dark theme
-bg-black           // Primary background
-text-white         // Primary text
-text-zinc-400      // Secondary text
-text-zinc-500      // Tertiary/labels
-border-white/10    // Subtle borders
-bg-white/5         // Subtle backgrounds
-bg-white/10        // Hover states
-```
-
-### 4. Visual Hierarchy in Limited Space
+### 3. Visual Hierarchy in Limited Space
 
 With limited width, hierarchy matters more:
 
@@ -87,7 +72,7 @@ With limited width, hierarchy matters more:
 </div>
 ```
 
-### 5. Every Interactive Element Needs Feedback
+### 4. Every Interactive Element Needs Feedback
 
 Users need visual confirmation that elements are interactive:
 
@@ -163,19 +148,7 @@ _meta: { openai: { toolInvocation: { ... } } }
 _meta: { openai: { widgetAccessible: true, toolInvocation: { ... } } }
 ```
 
-### 2. Wrong MIME Type for Resources
-
-GPT Apps require specific MIME type:
-
-```typescript
-// Broken
-mimeType: "text/html"
-
-// Fixed  
-mimeType: "text/html+skybridge"
-```
-
-### 3. External Fetch Without CSP
+### 2. External Fetch Without CSP
 
 Requests blocked silently:
 
@@ -191,7 +164,7 @@ _meta: {
 }
 ```
 
-### 4. Hardcoded Dimensions
+### 3. Hardcoded Dimensions
 
 Widgets break on different screen sizes:
 
@@ -203,19 +176,7 @@ Widgets break on different screen sizes:
 <div className="w-full max-w-2xl mx-auto">...</div>
 ```
 
-### 5. toolInvocation Messages Too Long
-
-Max 64 characters each:
-
-```typescript
-// Bad: truncated
-invoking: "Loading weather data for the selected city..."
-
-// Good: concise
-invoking: "Loading weather..."
-```
-
-### 6. No Error Boundaries
+### 4. No Error Boundaries
 
 Crashes show blank widget:
 
@@ -229,21 +190,6 @@ try {
 ```
 
 ## Platform-Specific Notes
-
-### GPT Apps: Returning Metadata
-
-For tools that don't return content, return metadata for widget display:
-
-```typescript
-export default async function handler() {
-  return {
-    _meta: {
-      "openai/widgetAccessible": true,
-      "openai/outputTemplate": "ui://widget/my-widget.html",
-    },
-  };
-}
-```
 
 ### GPT Apps: Structured Content for Widget Communication
 
@@ -273,15 +219,7 @@ export default function Widget() { return <div>Hello</div>; }
 ### GPT Apps Checklist
 - `widgetAccessible: true` in metadata
 - `toolInvocation` messages under 64 chars
-- `mimeType: "text/html+skybridge"` for resources
 - CSP for external domains
-
-### Visual Checklist
-- Dark theme colors
-- Hover states on all buttons
-- Loading and error states
-- Responsive width (max-w-*)
-- Visual hierarchy (size/color contrast)
 
 ## References
 

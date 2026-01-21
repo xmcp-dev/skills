@@ -73,6 +73,23 @@ export const metadata: ToolMetadata = {
 };
 ```
 
+### Minimal Tool (No Metadata)
+```typescript
+import { z } from "zod";
+import { type InferSchema } from "xmcp";
+
+export const schema = {
+  name: z.string().describe("The name to greet"),
+};
+
+// Metadata is optional - tool name defaults to filename
+export default function handler({ name }: InferSchema<typeof schema>) {
+  return `Hello, ${name}!`;
+}
+```
+
+**Note:** When metadata is omitted, xmcp uses the filename as the tool name.
+
 ### Metadata with Annotations
 ```typescript
 export const metadata: ToolMetadata = {

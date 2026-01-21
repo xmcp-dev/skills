@@ -5,10 +5,11 @@ This repository contains skills for building MCP servers with xmcp.
 ## Repository Structure
 
 - `skills/` - Contains skill packages for xmcp development
-  - `tool-creation/` - Guide for creating xmcp tools
+  - `tool-design/` - Guide for creating xmcp tools
   - `mcp-server-design/` - Guide for designing MCP servers
   - `resource-design/` - Guide for creating xmcp resources
   - `prompt-design/` - Guide for creating xmcp prompts
+  - `widget-design/` - Guide for designing UI widgets
 
 ## Skill Format
 

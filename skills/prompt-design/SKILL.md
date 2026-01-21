@@ -53,7 +53,7 @@ Every xmcp prompt has three main exports:
 // 1. Schema (optional) - Define parameters with Zod
 export const schema = { /* ... */ };
 
-// 2. Metadata (required) - Prompt configuration
+// 2. Metadata (optional) - Prompt configuration
 export const metadata: PromptMetadata = { /* ... */ };
 
 // 3. Handler (required) - Default export function
@@ -75,10 +75,12 @@ import { type InferSchema, type PromptMetadata } from "xmcp";
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `name` | string | Yes | Unique prompt identifier |
-| `title` | string | Yes | Human-readable title |
-| `description` | string | Yes | What this prompt does |
+| `name` | string | No* | Unique prompt identifier |
+| `title` | string | No | Human-readable title |
+| `description` | string | No | What this prompt does |
 | `role` | string | No | "user" or "assistant" (default: user) |
+
+*When metadata is omitted, xmcp uses the filename as the prompt name.
 
 ### Handler Return Types
 
@@ -115,7 +117,7 @@ For complete code templates including:
 ## Checklist After Generation
 
 1. File created in `src/prompts/{prompt-name}.ts`
-2. Metadata has `name`, `title`, and `description`
+2. If using metadata, ensure it has `name`, `title`, and `description`
 3. Schema uses `.describe()` for all parameters (if parameterized)
 4. Handler returns appropriate content format
 5. Role is set appropriately for the use case

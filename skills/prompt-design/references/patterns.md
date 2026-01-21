@@ -53,6 +53,21 @@ export default function handler() {
 }
 ```
 
+### Minimal Prompt (No Metadata)
+
+Best for: Quick prototyping, simple prompts
+
+**File: `src/prompts/hello.ts`**
+
+```typescript
+// Metadata is optional - prompt name defaults to filename
+export default function handler() {
+  return "Hello! How can I help you today?";
+}
+```
+
+**Note:** When metadata is omitted, xmcp uses the filename as the prompt name.
+
 ---
 
 ## Parameterized Prompt Templates
