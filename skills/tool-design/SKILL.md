@@ -114,4 +114,4 @@ For complete code templates including:
 5. Handler matches the chosen type
 6. All imports are correct
 
-- Suggest running `pnpm build` to verify the tool compiles correctly.
+Suggest running `pnpm build` to verify the tool compiles correctly.

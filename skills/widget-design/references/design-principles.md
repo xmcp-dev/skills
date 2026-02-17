@@ -489,7 +489,7 @@ Positive (tool should trigger):
 Negative (tool should NOT trigger):
 - Scenario, User prompt
 
-- Use [MCPJam](https://www.mcpjam.com/) to auto-generate test cases.
+Use [MCPJam](https://www.mcpjam.com/) to auto-generate test cases.
 
 ---
 

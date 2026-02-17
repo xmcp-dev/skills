@@ -121,4 +121,4 @@ For complete code templates including:
 4. Handler returns appropriate content type
 5. File path matches intended URI pattern
 
-- Suggest running `pnpm build` to verify the resource compiles correctly.
+Suggest running `pnpm build` to verify the resource compiles correctly.
