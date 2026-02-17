@@ -102,7 +102,7 @@ export const metadata: ToolMetadata = {
       widgetAccessible: true,
       resultCanProduceWidget: true,
       widgetCSP: {
-        connect_domains: ["https://api.open-meteo.com"],
+        connect_domains: ["{{WEATHER_API_BASE_URL}}"],
       },
     },
   },
@@ -113,6 +113,7 @@ const cities = {
   "San Francisco": { lat: 37.7749, lon: -122.4194 },
   "Tokyo": { lat: 35.6762, lon: 139.6503 },
 };
+const WEATHER_API_BASE_URL = "{{WEATHER_API_BASE_URL}}";
 
 export default function handler() {
   const [selectedCity, setSelectedCity] = useState("Buenos Aires");
@@ -127,7 +128,7 @@ export default function handler() {
       const city = cities[selectedCity as keyof typeof cities];
       try {
         const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`
+          `${WEATHER_API_BASE_URL}/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`
         );
         if (!response.ok) throw new Error("Failed to fetch");
         setWeatherData(await response.json());
@@ -198,8 +199,8 @@ export const metadata: ResourceMetadata = {
 export default async function handler() {
   return `
     <div id="pizzaz-root"></div>
-    <link rel="stylesheet" href="https://cdn.example.com/pizzaz.css">
-    <script type="module" src="https://cdn.example.com/pizzaz.js"></script>
+    <link rel="stylesheet" href="{{PIZZAZ_CSS_URL}}">
+    <script type="module" src="{{PIZZAZ_JS_URL}}"></script>
   `.trim();
 }
 ```
@@ -366,7 +367,7 @@ export default async function handler({ game }: InferSchema<typeof schema>) {
     structuredContent: {
       game: "doom",
       title: "DOOM",
-      url: "https://example.com/doom.jsdos",
+      url: "{{GAME_ASSET_URL}}",
     },
     content: [{ type: "text", text: "Launching DOOM..." }],
   };
@@ -415,10 +416,10 @@ mimeType: "text/html+skybridge"
 
 ```typescript
 // Bad - fetch blocked
-fetch('https://api.external.com/data');
+fetch('{{EXTERNAL_API_URL}}');
 
 // Good - declare in metadata
-widgetCSP: { connect_domains: ["https://api.external.com"] }
+widgetCSP: { connect_domains: ["{{EXTERNAL_API_BASE_URL}}"] }
 ```
 
 ### No Loading State
@@ -488,7 +489,6 @@ Positive (tool should trigger):
 Negative (tool should NOT trigger):
 - Scenario, User prompt
 
-Use [MCPJam](https://www.mcpjam.com/) to auto-generate test cases.
 
 ---
 

@@ -1,6 +1,5 @@
 # xmcp-dev/skills
 
-Skills for building MCP servers with [xmcp](https://xmcp.dev).
 
 ## What are Skills?
 

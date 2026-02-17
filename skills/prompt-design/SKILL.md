@@ -121,5 +121,3 @@ For complete code templates including:
 3. Schema uses `.describe()` for all parameters (if parameterized)
 4. Handler returns appropriate content format
 5. Role is set appropriately for the use case
-
-Suggest running `pnpm build` to verify the prompt compiles correctly.

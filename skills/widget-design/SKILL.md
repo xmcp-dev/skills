@@ -154,12 +154,12 @@ Requests blocked silently:
 
 ```typescript
 // Broken: fetch fails silently
-fetch('https://api.weather.com/data');
+fetch('{{WEATHER_API_URL}}');
 
 // Fixed: declare in metadata
 _meta: {
   openai: {
-    widgetCSP: { connect_domains: ["https://api.weather.com"] }
+    widgetCSP: { connect_domains: ["{{WEATHER_API_BASE_URL}}"] }
   }
 }
 ```
@@ -229,3 +229,20 @@ See [references/design-principles.md](references/design-principles.md) for:
 - CSS Modules examples
 - GPT App submission requirements
 - Project structure templates
+
+## Runtime Dependency Baseline (Pinned)
+
+```bash
+pnpm add xmcp@0.2.0 zod@4.1.5 react@19.1.1
+pnpm build
+```
+
+## Accepted Runtime Dependency Risks
+
+Version snapshot date: February 17, 2026.
+
+- `xmcp@0.2.0`: Accept risk of API or behavior drift vs newer releases to keep widget examples deterministic.
+- `zod@4.1.5`: Accept risk of missing validation/runtime improvements until planned upgrades.
+- `react@19.1.1`: Accept risk of missing runtime fixes/features until intentionally re-pinned.
+
+Re-evaluate pinned versions on a monthly cadence, or immediately for breaking changes and security advisories.
