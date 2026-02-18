@@ -154,12 +154,12 @@ Requests blocked silently:
 
 ```typescript
 // Broken: fetch fails silently
-fetch('https://api.weather.com/data');
+fetch('{{WEATHER_API_URL}}');
 
 // Fixed: declare in metadata
 _meta: {
   openai: {
-    widgetCSP: { connect_domains: ["https://api.weather.com"] }
+    widgetCSP: { connect_domains: ["{{WEATHER_API_BASE_URL}}"] }
   }
 }
 ```

@@ -250,8 +250,8 @@ export const metadata: ToolMetadata = {
 export default async function handler() {
   return `
     <div id="map-root" style="width: 100%; height: 400px;"></div>
-    <link rel="stylesheet" href="https://example.com/map.css">
-    <script type="module" src="https://example.com/map.js"></script>
+    <link rel="stylesheet" href="{{MAP_WIDGET_CSS_URL}}">
+    <script type="module" src="{{MAP_WIDGET_JS_URL}}"></script>
   `.trim();
 }
 ```
